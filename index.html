@@ -12,15 +12,31 @@
 	<h1 class="inline">홍길동</h1>님 반갑습니다.
 	<div>
     현재 접속자는 <Span class="red">홍길동</Span>님입니다.
+    <div>
+      학번 : <span class="studentNo">학번</span>, 이메일 : <span class="email">이메일</span>
+    </div>
   </div>
   <dialog id="inputModal">
-    <form>
-      <label>
-        이름:
-        <input type="text"/>
-      </label>
-      <button>확인</button>
-    </form>
+    <div class="modalContent">
+      <form class="modalForm">
+        <label>
+          이름:
+          <input name="userName" type="text"/>
+        </label>
+        <br>
+        <label>
+          학번:
+          <input name="studentNo" type="number"/>
+        </label>
+        <br>
+        <label>
+          이메일:
+          <input name="userEmail" type="email"/>
+        </label>
+        <br>
+      </form>
+      <button class="modalSubmit">확인</button>
+  </div>
   </dialog>
 	<script src="./js/example.js"/>
 </body>
