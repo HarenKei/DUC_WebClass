@@ -93,5 +93,6 @@ modalSubmitButton.onclick = (e) => {
       else alert(`잘못된 이메일 형식.`);
     }
   }
+  modalFormElement.reset();
   inputModalElement.close();
 };
