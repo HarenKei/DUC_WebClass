@@ -20,7 +20,7 @@ const setUserEmail = (email) => {
 };
 
 const chkStudentNo = (stdNo) => {
-  if (stdNo.length != 9) {
+  if (stdNo.length != 9 || stdNo === ``) {
     return false;
   } else {
     return true;
@@ -30,25 +30,14 @@ const chkStudentNo = (stdNo) => {
 const chkUserEmail = (email) => {
   // eslint-disable-next-line max-len
   // 이메일의 형식을 @, .의 존재 여부로 판별하는 함수입니다.
-  if (email.includes('@') && email.includes('.')) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-const setUserInfomation = (formData) => {
-  // dialog를 통해 입력받은 값을 localStorage에 저장하고 화면에 나타냅니다.
-  for (const [key, value] of formData) {
-    localStorage.setItem(key, value);
-    if (key==='userName') {
-      setUserName(value);
-    } if (key === 'studentNo') {
-      setStudentNo(value);
-    } if (key === 'userEmail') {
-      setUserEmail(value);
-    }
-  }
+  const testEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+  if (!testEmail.test(email) || email === ``) return false;
+  else return true;
+  // if (email.includes('@') && email.includes('.')) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
 };
 
 const setLocalInfomation = () => {
@@ -61,9 +50,6 @@ const setLocalInfomation = () => {
   if (localStudentNo) setStudentNo(localStudentNo);
   if (localUserEmail) setUserEmail(localUserEmail);
 };
-
-
-
 // const localName = localStorage.getItem('userName');
 // const localStudentNo = localStorage.getItem('studentNo');
 // const localUserEmail = localStorage.getItem('userEmail');
@@ -98,15 +84,13 @@ modalSubmitButton.onclick = (e) => {
     localStorage.setItem(key, value);
     if (key==='userName') {
       setUserName(value);
-    } if (key === 'studentNo' && chkStudentNo()) {
-      setStudentNo(value);
-    } else {
-      alert(`잘못된 학번값.`);
+    } if (key === 'studentNo') {
+      if (chkStudentNo(value)) setStudentNo(value);
+      else alert(`잘못된 학번값.`);
     }
-    if (key === 'userEmail' && chkUserEmail()) {
-      setUserEmail(value);
-    } else {
-      alert(`잘못된 이메일 형식.`);
+    if (key === 'userEmail') {
+      if (chkUserEmail(value)) setUserEmail(value);
+      else alert(`잘못된 이메일 형식.`);
     }
   }
   inputModalElement.close();
