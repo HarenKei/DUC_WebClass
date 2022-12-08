@@ -1,12 +1,17 @@
-body{
-	background-color : #4FA095
+body {
+  background-color: #4fa095;
 }
 
-.inline{
-	display: inline-block;
-	cursor: pointer;
+.inline {
+  display: inline-block;
+  cursor: pointer;
 }
 
-.red{
-	color: red;
+.red {
+  color: red;
+}
+
+#inputModal::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  
 }
